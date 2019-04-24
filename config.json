@@ -6,7 +6,7 @@
     "img_mean_grid_dir": "data/img_mean_grid",
     "img_alpha_dir": "data/img_alpha",
     "img_alpha_weight_dir": "data/img_alpha_weight",
-    "img_trimap_dir": "data/img_trimap",
+    "img_trimap_dir": "data/img_trimap/data",
     "org_imgurl_filepath": "data_original/alldata_urls.txt",
     "org_crop_filepath": "data_original/crop.txt",
     "org_mask_dir": "data_original/images_mask",
