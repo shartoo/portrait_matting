@@ -38,6 +38,7 @@ def _sort_names(names):
 
 def get_valid_names(*dirs, rm_exts=None):
     # Extract valid names
+    print(dirs)
     if rm_exts is None:
         name_sets = [_get_name_set(d) for d in dirs]
     else:

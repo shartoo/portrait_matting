@@ -45,7 +45,9 @@ class FCN8sMatting(FCN8s):
         super().__init__(n_input_ch, 3, at_once)  # 3 outputs
         with self.init_scope():
             self.prob_scale = L.Scale(W_shape=(1,))
-            self.prob_scale.W.copydata(np.array([100.0]))  # Initial parameter
+            a = np.array([100.0])
+            #self.prob_scale.W=chainer.Variable(a)  # Initial parameter
+            self.prob_scale.W.copydata(chainer.Variable(a))  # Initial parameter
             self.matting_link = MattingLink()
 
     def to_gpu(self, device=None):
@@ -92,9 +94,12 @@ class FCN8sMatting(FCN8s):
 
         # Increase gradient of the probability
         prob = prob - 0.5
+
+
         prob = self.prob_scale(prob)
         prob = F.clip(prob, -0.5, 0.5)
         prob = prob + 0.5
+
 
         # Down sampling
         h, w = x.shape[2:4]

@@ -17,7 +17,9 @@ import numpy as np
 # modules
 import log_initializer
 import config
-from datasets import PortraitSegDataset, split_dataset, get_valid_names
+from datasets.seg_dataset import PortraitSegDataset
+from datasets.common import split_dataset, get_valid_names
+
 from face_mask import FaceMasker
 
 # logging

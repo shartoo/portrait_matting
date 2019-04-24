@@ -46,7 +46,7 @@ def parse_arguments(argv):
                         help='Resume the training from snapshot')
     parser.add_argument('--mode', choices=['seg', 'seg+', 'seg_tri', 'mat'],
                         help='Training mode', required=True)
-    parser.add_argument('--pretrained_fcn8s', default=None,
+    parser.add_argument('--pretrained_fcn8s', default=r"E:\workspace\python\portrait_matting\data\fcn8s_from_caffe.npz",
                         help='Pretrained model path of FCN8s')
     parser.add_argument('--pretrained_n_input_ch', default=3, type=int,
                         help='Input channel number of Pretrained model')
@@ -130,7 +130,6 @@ def setup_optimizer(model, lr, momentum, weight_decay):
                 momentum, weight_decay)
     optimizer = chainer.optimizers.MomentumSGD(lr=lr, momentum=momentum)
     optimizer.setup(model)
-
     # Learning rate hooks
     optimizer.add_hook(chainer.optimizer.WeightDecay(rate=weight_decay))
     for p in model.params():
@@ -227,7 +226,7 @@ def main(argv):
     args = parse_arguments(argv)
 
     # Load config
-    config.load(args.config)
+    config.load("../config.json")
 
     # Setup dataset
     train, test = setup_dataset(args.mode, config.img_crop_dir,
